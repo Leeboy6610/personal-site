@@ -17,14 +17,14 @@ $return[]=array('postid'=>$row['id'],
           'image'=>$row['image'],
           'post'=>$row['post']);
 
-    echo "Post ID :{$row['postid']}  <br> ".
-        "Title: {$row['title']} <br> ".
-        "Author: {$row['author']} <br> ".
-        "Date : {$row['date']} <br> ".
-        "Type : {$row['type']} <br> ".
-        "Image : {$row['image']} <br> ".
-        "Post : {$row['post']} <br> ".
-        "--------------------------------<br>";
+//    echo "Post ID :{$row['postid']}  <br> ".
+//        "Title: {$row['title']} <br> ".
+//        "Author: {$row['author']} <br> ".
+//        "Date : {$row['date']} <br> ".
+//        "Type : {$row['type']} <br> ".
+//        "Image : {$row['image']} <br> ".
+//        "Post : {$row['post']} <br> ".
+//        "--------------------------------<br>";
 }
 
 //To output as-is json data result
