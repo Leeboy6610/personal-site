@@ -1,0 +1,16 @@
+<div id="news" class="content fullHeight news-wrapper full-list">
+	<h1 class="postpone transition show">{{ title }} —</h1>
+<!-- Start Post Holder -->
+<!-- Post -->
+<a href="#article-{{ article.Article.id }}" class="post-holder" ng-repeat="article in articleList" style="background-image: url('images/post-img.jpg');">
+	<span class="color-overlay"></span>
+	<p class="note-meta">
+		<span class="category ng-binding">{{ article.Article.type }}</span>
+		<span class="desktop-only">///</span>
+		<span class="date-posted">{{ article.Article.date }}</span>
+	</p>
+	<h3 class="note-title">{{ article.Article.title }}</h3>
+	<cite class="note-author">Posted  by  {{ article.Article.author }}</cite>
+</a>
+<!-- End Post Holder -->
+</div>

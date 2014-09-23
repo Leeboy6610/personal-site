@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html ng-app="mainApp"> <!--<![endif]-->
+
+  <head>
+    <!-- //// META \\\\ -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Offical Site of Leo Rue Schultz">
+    <meta name="author" content="Leo Rue Schultz">    
+
+    <!-- //// FAVICON \\\\ -->
+    <link rel="SHORTCUT ICON" href="images/favicon.ico" />
+
+    <!-- //// FACEBOOK \\\\ -->
+    <meta property="og:title" content="Leo Rue Schultz // Silicon Valley Generalist" />
+    <meta property="og:description" content="The Offical Site of Leo Rue Schultz" />
+    <meta property="og:image" content="images/meta-img.jpg" />
+
+    <!-- //// TWITTER \\\\ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@Leeboy6610">
+    <meta name="twitter:creator" content="@Leeboy6610">
+    <meta name="twitter:title" content="Leo Rue Schultz // Silicon Valley Generalist">
+    <meta name="twitter:description" content="The Offical Site of Leo Rue Schultz">
+    <meta name="twitter:image:src" content="images/meta-img.jpg">
+
+    <!-- //// TITLE \\\\ -->
+    <title>Leo Rue Schultz // Silicon Valley Generalist</title>
+
+
+      <!-- Bootstrap -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+
+    <!-- //// CSS \\\\ -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
+    <link href='css/style.css' rel="stylesheet">
+
+    <!-- Angular -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+    <script src="js/script.js"></script>
+
+    <!-- //// IE \\\\ -->
+    <script>
+      var ie9 = false,
+          ie8 = false,
+          ie = false,
+          absurl = '/';
+    </script> 
+    
+    <!--[if lte IE 9 ]>
+      <script> var ie9 = true; </script>
+    <![endif]--> 
+
+    <!--[if lt IE 9 ]>
+      <script> var ie8 = true; </script>
+      <script src='js/respond.min.js'></script>
+    <![endif]-->
+
+    <!--[if IE]>
+      <script> var ie = true; </script>
+    <![endif]-->
+       
+    <script src='js/modernizr.js'></script>
+</head>
+
+<!-- define angular controller -->
+<body class="back-overlay">
+    <!-- The splash screen must be first -->
+<!--     <div id="splash" ng-cloak>
+      <h2>Loading</h2>
+    </div> -->
+<div ng-controller="mainController">
+  <div id="main">
+    <div ng-view></div> 
+  </div>
+  
+<!--   <footer class="text-center">
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#news"><i class="fa fa-newspaper"></i> News</a></li>
+        <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+        <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
+        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="#work"><i class="fa fa-gears"></i> Work</a></li>
+        <li><a href="#experience"><i class="fa fa-edit"></i> Experience</a></li>
+        <li><a href="#skills"><i class="fa fa-code"></i> Skills</a></li>
+      </ul>
+    </div>
+  </nav>
+  </footer> -->
+</div>
+  <!-- Loader -->
+<!--   <div id="loader">
+    <img src="images/loading.svg" alt="Loading" />
+  </div> -->
+  <script src="js/require.js"></script>
+</body>
+
+</html>
