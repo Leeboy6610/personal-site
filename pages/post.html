@@ -1,0 +1,16 @@
+<div id="post" class="content fullHeight news-wrapper full-list">
+    <h1 class="postpone transition show">{{ title }} —</h1>
+    <form name="postForm" ng-submit="postForm()">
+        <input type="text" ng-model="post.title" />
+        <input type="text" ng-model="post.author" />
+        <input type="date" ng-model="post.date" />
+        <input type="radio" ng-model="post.type" value="business">business<br>
+    	<input type="radio" ng-model="post.type" value="culture">culture<br>
+    	<input type="radio" ng-model="post.type" value="culture">technology<br>
+    	<input type="radio" ng-model="post.type" value="culture">politics<br>
+    	<input type="radio" ng-model="post.type" value="culture">news<br>
+        <input type="url" ng-model="post.image" />
+        <input type="text" ng-model="post.post" />
+        <input type="submit" value="Submit">
+    </form>
+</div>

@@ -41,23 +41,30 @@
 				controller  : 'experienceController'
 			})
 
-			// route for the news page
+			// route for the post articles page
+			.when('/post', {
+				templateUrl : 'pages/post.html',
+				controller  : 'postController'
+			})
+
+			// route for the news holder page
 			.when('/news', {
 				templateUrl : 'pages/news.html',
 				controller  : 'newsController'
 			})
 
-			// route for the article page
+			// route for the news article page
 			.when('/article-:postId', {
 				templateUrl : 'pages/article.html',
 				controller  : 'articleController'
 			});
+
 	});
 
 	// create the controller and inject Angular's $scope
 	mainApp.controller('mainController', function($scope) {
 		// create a title to display in our view
-		$scope.title = 'Welcome';
+		$scope.title = 'welcome';
 	});
 
 	mainApp.controller('aboutController', function($scope) {
@@ -112,7 +119,15 @@
 		$scope.title = 'my experiance';
 	});
 
-	mainApp.controller('newsController', function($scope) {
+	mainApp.controller('postController', function($scope) {
+		$scope.title = 'my posts';
+		$scope.postForm = function(postData){
+        var data = $scope.post;
+        $http.post(url, data);        
+    	}
+	});
+
+	mainApp.controller('newsController', function($scope, blogAPIget) {
 		$scope.title = 'my thoughts and life';
 		$scope.articleList = [
 		{Article: {id: 1,title: 'Why Millenials shouldn\'t accept corporate america',author: 'Leo Schultz',date: 'September 10th 2014', type: 'business'}},
@@ -128,4 +143,15 @@
 	mainApp.controller('articleController', function($scope, $routeParams) {
 		$scope.title = 'example article';
 		$scope.post_id = $routeParams.postId;
+	});
+
+	mainApp.factory('blogAPIget', function($http){
+	var blogAPI = {};
+    blogAPI.getPosts = function() {
+      return $http({
+        method: 'JSONP', 
+        url: 'http://ergast.com/api/f1/2013/driverStandings.json?callback=JSON_CALLBACK'
+      });
+    }
+    return blogAPI;
 	});
