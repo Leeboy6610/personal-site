@@ -129,15 +129,20 @@
 
 	mainApp.controller('newsController', function($scope, blogAPIget) {
 		$scope.title = 'my thoughts and life';
-		$scope.articleList = [
-		{Article: {id: 1,title: 'Why Millenials shouldn\'t accept corporate america',author: 'Leo Schultz',date: 'September 10th 2014', type: 'business'}},
-		{Article: {id: 2,title: '25 things I will never understand about feminism',author: 'Leo Schultz',date: 'September 14th 2011', type: 'culture'}},
-		{Article: {id: 3,title: 'What the popping of the mobile bubble with look like.',author: 'Leo Schultz',date: 'January 12th 2014', type: 'business'}},
-		{Article: {id: 4,title: 'My week mentoring GSBI social ventures',author: 'Leo Schultz',date: 'June 24th 2013', type: 'news'}},
-		{Article: {id: 5,title: 'Libertarian = American',author: 'Leo Schultz',date: 'April 2nd 2012', type: 'politics'}},
-		{Article: {id: 6,title: 'The line between confident and cocky',author: 'Leo Schultz',date: 'May 30th 2013', type: 'culture'}},
-		{Article: {id: 7,title: 'The role of material sciences in future technology',author: 'Leo Schultz',date: 'May 30th 2013', type: 'technology'}},
-		];
+		$scope.typeFilter = null;
+		$scope.articleList = [];
+		blogAPIget.getPosts().success(function (response){
+			$scope.articleList = response.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+		});
+		// $scope.articleList = [
+		// {Article: {id: 1,title: 'Why Millenials shouldn\'t accept corporate america',author: 'Leo Schultz',date: 'September 10th 2014', type: 'business'}},
+		// {Article: {id: 2,title: '25 things I will never understand about feminism',author: 'Leo Schultz',date: 'September 14th 2011', type: 'culture'}},
+		// {Article: {id: 3,title: 'What the popping of the mobile bubble with look like.',author: 'Leo Schultz',date: 'January 12th 2014', type: 'business'}},
+		// {Article: {id: 4,title: 'My week mentoring GSBI social ventures',author: 'Leo Schultz',date: 'June 24th 2013', type: 'news'}},
+		// {Article: {id: 5,title: 'Libertarian = American',author: 'Leo Schultz',date: 'April 2nd 2012', type: 'politics'}},
+		// {Article: {id: 6,title: 'The line between confident and cocky',author: 'Leo Schultz',date: 'May 30th 2013', type: 'culture'}},
+		// {Article: {id: 7,title: 'The role of material sciences in future technology',author: 'Leo Schultz',date: 'May 30th 2013', type: 'technology'}},
+		// ];
 	});
 
 	mainApp.controller('articleController', function($scope, $routeParams) {
