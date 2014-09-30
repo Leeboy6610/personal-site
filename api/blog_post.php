@@ -1,6 +1,6 @@
 <?php
 $json = file_get_contents('posts.json');
-$data = json_decode($json,true);
+$data = json_decode($json, true);
 
 $posts = $data['posts'];
 
@@ -24,7 +24,7 @@ echo $values;
 
 include 'config.php';
 
-// Insert $event array into eventbase
+Insert $event array into eventbase
 
 $db_insert = mysql_query("INSERT INTO blog (postid, title, author, date, type, image, post) VALUES" . $values);
 
