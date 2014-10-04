@@ -75,10 +75,35 @@
       <h2>Loading</h2>
     </div> -->
 <div ng-controller="mainController">
-  <div id="main">
-    <div ng-view></div> 
-  </div>
-  
+<div class="container-fluid">
+    <header>
+      <nav>
+        <div class="button">
+          <a href="#">
+            <img class="btn-open" src="images/btn-hamburger.png" alt="">
+            <img class="btn-close" src="images/btn-close.png" alt="">
+          </a>
+        </div>
+      </nav>
+    </header>
+    <div class="overlay">
+      <div class="wrap">
+        <ul class="wrap-nav">
+        <li><a href="#news"><i class="fa fa-newspaper"></i> News</a></li>
+        <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+        <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
+        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="#work"><i class="fa fa-gears"></i> Work</a></li>
+        <li><a href="#experience"><i class="fa fa-edit"></i> Experience</a></li>
+        <li><a href="#skills"><i class="fa fa-code"></i> Skills</a></li>
+        </ul>
+        <div class="social">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, recusandae, magnam, sapiente, iure deleniti repudiandae est tempora repellat fugiat aliquid nihil assumenda non placeat cum minus aut qui. Ipsa, aut.
+        </div>
+      </div>
+    </div>
+    <div ng-view></div>
+</div>
 <!--   <footer class="text-center">
   <nav class="navbar navbar-default">
     <div class="container">
@@ -99,7 +124,11 @@
 <!--   <div id="loader">
     <img src="images/loading.svg" alt="Loading" />
   </div> -->
-  <script src="js/require.js"></script>
+<!-- jQuery -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/require.js"></script>
 </body>
 
 </html>
