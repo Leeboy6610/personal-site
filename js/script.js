@@ -65,14 +65,17 @@
 	mainApp.controller('mainController', function($scope) {
 		// create a title to display in our view
 		$scope.title = 'welcome';
+		$scope.color = 'red';
 	});
 
 	mainApp.controller('aboutController', function($scope) {
 		$scope.title = 'about me';
+		$scope.color = 'gray';
 	});
 
 	mainApp.controller('contactController', function($scope, $http) {
 		$scope.title = 'contact me';
+		$scope.color = 'gray';
 		$scope.result = 'hidden'
 	    $scope.resultMessage;
 	    $scope.formData; //formData is an object holding the name, email, subject, and message
@@ -109,18 +112,22 @@
 
 	mainApp.controller('workController', function($scope) {
 		$scope.title = 'my work';
+		$scope.color = 'gray';
 	});
 
 	mainApp.controller('skillsController', function($scope) {
 		$scope.title = 'my skills';
+		$scope.color = 'gray';
 	});
 
 	mainApp.controller('experienceController', function($scope) {
 		$scope.title = 'my experiance';
+		$scope.color = 'gray';
 	});
 
 	mainApp.controller('postController', function($scope) {
 		$scope.title = 'my posts';
+		$scope.color = 'gray';
 		$scope.postForm = function(postData){
         var data = $scope.post;
         $http.post(url, data);        
@@ -147,6 +154,7 @@
 
 	mainApp.controller('articleController', function($scope, $routeParams) {
 		$scope.title = 'example article';
+		$scope.color = 'gray';
 		$scope.post_id = $routeParams.postId;
 	});
 

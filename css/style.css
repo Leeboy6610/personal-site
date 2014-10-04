@@ -238,11 +238,10 @@ li{
 /*header*/
 header{
  color: #fff;
- background: rgba(0, 0, 0, 0.47);
 }
 nav{
  text-align: center;
- max-width: 1100px;
+ max-width: 100%;
  margin: 0 auto;
  position: relative;
  height: 110px;
@@ -298,7 +297,7 @@ nav ul li a{
 }
 .wrap ul.wrap-nav > li{
  font-size: 22px;
- display: inline-block;
+ display: block;
  vertical-align: top;
  width: 24%;
  position: relative; 
@@ -359,8 +358,11 @@ nav ul li a{
   font-size: 2.1em;
   font-weight: 500;
 }
-.back-overlay {
+.red {
 background: radial-gradient(rgb(255, 0, 0), rgb(155, 0, 0));
+}
+.gray {
+background: radial-gradient(rgb(150, 150, 150), rgb(240, 240, 240));
 }
 .fullHeight {
     height: 100%}
@@ -565,7 +567,7 @@ background: radial-gradient(rgb(255, 0, 0), rgb(155, 0, 0));
     top: 2%;
     left: 5%}
 .container-about {
-    height: 80%;
+    height: 1000px;
     margin-top: -5%;
     overflow: hidden;
     opacity: 0;
