@@ -1,30 +1,25 @@
-<div id="video-container">  
-    <video autoplay="1" loop="1" class="fillWidth">
-        <source src="video/background.mp4" type="video/mp4"/>
-        <!-- <source src="video/background.ogv" type="video/ogv"/> -->
-        <source src="video/background.webm" type="video/webm"/>
-            Your browser does not support the video tag. I suggest you upgrade your browser.
-    </video>
-</div><!-- end video-container -->
+<section class="home">
+<header class="text-center">
+  <a class="nav-arrow" href="#{{ previous }}">{{ previous }}</a>
+</header>
+<div id="videocontent">
+    <article class="lead text-center">
+        <h1>{{ title }}</h1>
+        <h2>{{ slogan }}</h2>
+    </article>
+</div>
+<!--[if lt IE 7]>
+<div id="cframez">
+<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> Now!</p>
+ </div> 
+<![endif]-->
+<video autoplay loop>
+	<source src="video/background.webm" type="video/webm">
+	<source src="video/background.mp4" type="video/mp4">
+</video>
 <div id="video-overlay"></div>
-<div id="home">
 
-<div class="intro">
-        <div class="intro-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading white transition translateZ show">Leo Rue Schultz</h1>
-                        <h2 class="white intro-text uppercase transition translateZ show">Silicon Valley Generalist</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-</div>
-<!-- 	<div class="vCenter">
-		<div class="vCenterKid ">
-			<h1 class="white transition translateZ show">Leo Rue Schultz</h1>
-			<h2 class="white uppercase transition translateZ show">Silicon Valley Generalist</h2>
-		</div>
-	</div> -->
-</div>
+<footer class="home-footer text-center">
+<a class="nav-arrow" href="#{{ next }}">{{ next }}</a>
+</footer>
+</section>

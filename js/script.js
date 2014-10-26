@@ -17,12 +17,6 @@
 				controller  : 'aboutController'
 			})
 
-			// route for the contact page
-			.when('/contact', {
-				templateUrl : 'pages/contact.html',
-				controller  : 'contactController'
-			})
-
 			// route for the work page
 			.when('/work', {
 				templateUrl : 'pages/work.html',
@@ -36,9 +30,9 @@
 			})
 
 			// route for the experience page
-			.when('/experience', {
-				templateUrl : 'pages/experience.html',
-				controller  : 'experienceController'
+			.when('/hobbies', {
+				templateUrl : 'pages/hobbies.html',
+				controller  : 'hobbiesController'
 			})
 
 			// route for the post articles page
@@ -64,55 +58,61 @@
 	// create the controller and inject Angular's $scope
 	mainApp.controller('mainController', function($scope) {
 		// create a title to display in our view
-		$scope.title = 'welcome';
-		$scope.color = 'red';
+		$scope.title = 'Leo Schultz';
+		$scope.slogan = 'Silicon Valley Generalist';
+		$scope.next = 'work';
+		$scope.previous = 'about';
 	});
 
 	mainApp.controller('aboutController', function($scope) {
 		$scope.title = 'about me';
 		$scope.color = 'gray';
+		$scope.next = 'home';
+		$scope.previous = 'work';
 	});
 
-	mainApp.controller('contactController', function($scope, $http) {
-		$scope.title = 'contact me';
-		$scope.color = 'gray';
-		$scope.result = 'hidden'
-	    $scope.resultMessage;
-	    $scope.formData; //formData is an object holding the name, email, subject, and message
-	    $scope.submitButtonDisabled = false;
-	    $scope.submitted = false; //used so that form errors are shown only after the form has been submitted
-	    $scope.submit = function(contactform) {
-	        $scope.submitted = true;
-	        $scope.submitButtonDisabled = true;
-	        if (contactform.$valid) {
-	            $http({
-	                method  : 'POST',
-	                url     : 'contact-form.php',
-	                data    : $.param($scope.formData),  //param method from jQuery
-	                headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  //set the headers so angular passing info as form data (not request payload)
-	            }).success(function(data){
-	                console.log(data);
-	                if (data.success) { //success comes from the return json object
-	                    $scope.submitButtonDisabled = true;
-	                    $scope.resultMessage = data.message;
-	                    $scope.result='bg-success';
-	                } else {
-	                    $scope.submitButtonDisabled = false;
-	                    $scope.resultMessage = data.message;
-	                    $scope.result='bg-danger';
-	                }
-	            });
-	        } else {
-	            $scope.submitButtonDisabled = false;
-	            $scope.resultMessage = 'Failed <img src="http://www.chaosm.net/blog/wp-includes/images/smilies/icon_sad.gif" alt=":(" class="wp-smiley">  Please fill out all the fields.';
-	            $scope.result='bg-danger';
-	        }
-	    }
-	});
+	// mainApp.controller('contactController', function($scope, $http) {
+	// 	$scope.title = 'contact me';
+	// 	$scope.color = 'gray';
+	// 	$scope.result = 'hidden';
+	//     $scope.resultMessage;
+	//     $scope.formData; //formData is an object holding the name, email, subject, and message
+	//     $scope.submitButtonDisabled = false;
+	//     $scope.submitted = false; //used so that form errors are shown only after the form has been submitted
+	//     $scope.submit = function(contactform) {
+	//         $scope.submitted = true;
+	//         $scope.submitButtonDisabled = true;
+	//         if (contactform.$valid) {
+	//             $http({
+	//                 method  : 'POST',
+	//                 url     : 'contact-form.php',
+	//                 data    : $.param($scope.formData),  //param method from jQuery
+	//                 headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  //set the headers so angular passing info as form data (not request payload)
+	//             }).success(function(data){
+	//                 console.log(data);
+	//                 if (data.success) { //success comes from the return json object
+	//                     $scope.submitButtonDisabled = true;
+	//                     $scope.resultMessage = data.message;
+	//                     $scope.result='bg-success';
+	//                 } else {
+	//                     $scope.submitButtonDisabled = false;
+	//                     $scope.resultMessage = data.message;
+	//                     $scope.result='bg-danger';
+	//                 }
+	//             });
+	//         } else {
+	//             $scope.submitButtonDisabled = false;
+	//             $scope.resultMessage = 'Failed <img src="http://www.chaosm.net/blog/wp-includes/images/smilies/icon_sad.gif" alt=":(" class="wp-smiley">  Please fill out all the fields.';
+	//             $scope.result='bg-danger';
+	//         }
+	//     }
+	// });
 
 	mainApp.controller('workController', function($scope) {
 		$scope.title = 'my work';
 		$scope.color = 'gray';
+		$scope.next = 'about';
+		$scope.previous = 'home';
 	});
 
 	mainApp.controller('skillsController', function($scope) {
@@ -120,8 +120,8 @@
 		$scope.color = 'gray';
 	});
 
-	mainApp.controller('experienceController', function($scope) {
-		$scope.title = 'my experiance';
+	mainApp.controller('hobbiesController', function($scope) {
+		$scope.title = 'my hobbies';
 		$scope.color = 'gray';
 	});
 
