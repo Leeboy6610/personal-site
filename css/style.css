@@ -15,7 +15,8 @@ header, footer{
 }
 
 .home-footer {
-
+    position: absolute;
+    bottom: 0;
 }
 
 .footer{
@@ -107,12 +108,11 @@ video {
 }
 #video-overlay {
     background: rgba(80, 0, 0, 0.7);
-    height: 100%;
-    left: 0;
-    overflow: hidden;
+    top:0;
+    overflow: auto;
     position: fixed;
-    top: 0;
-    width: 100%;
+    min-width:100%;
+    min-height:100%;
     z-index: 1;
 }
 
