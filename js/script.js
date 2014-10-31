@@ -62,7 +62,7 @@
 		$scope.title = 'about me';
 		$scope.color = 'gray';
 		$scope.next = 'home';
-		$scope.previous = 'work';
+		$scope.previous = 'blog';
 	});
 
 	// mainApp.controller('contactController', function($scope, $http) {

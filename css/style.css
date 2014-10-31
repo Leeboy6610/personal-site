@@ -630,13 +630,24 @@ a:hover, a:active{
     top: 0;
     left: 0;
     background: #892929;
-    background: url("../images/header.jpg") no-repeat center;
+    background: url("../images/blog-header.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     z-index: 1;
 }
 
 .blog-title{
     padding-top: 10%;
+}
+
+.blog-title a{
     color: #fff;
+}
+
+.blog-title a:hover{
+    color: #D70E0E;
 }
 
 .blog-title h1{
@@ -691,7 +702,7 @@ a:hover, a:active{
 }
 
 .blog-holder{
-    margin-top: 400px;
+    margin-top: 500px;
     background: #fff;
     position: relative;
     z-index: 2;
