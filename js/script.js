@@ -1,8 +1,8 @@
 	// the app module
-	var mainApp = angular.module('mainApp', ['ngRoute']);
+	var mainApp = angular.module('mainApp', ['ngRoute', 'ngResource']);
 
 	// configured routes
-	mainApp.config(function($routeProvider) {
+	mainApp.config(function($routeProvider, $httpProvider) {
 		$routeProvider
 
 			// route for the home page
@@ -36,21 +36,15 @@
 			})
 
 			// route for the post articles page
-			.when('/post', {
-				templateUrl : 'pages/post.html',
-				controller  : 'postController'
+			.when('/blog', {
+				templateUrl : 'pages/blog.html',
+				controller  : 'blogController'
 			})
 
 			// route for the news holder page
-			.when('/news', {
-				templateUrl : 'pages/news.html',
-				controller  : 'newsController'
-			})
-
-			// route for the news article page
-			.when('/article-:postId', {
-				templateUrl : 'pages/article.html',
-				controller  : 'articleController'
+			.when('/blog/:id', {
+				templateUrl : 'pages/post.html',
+				controller  : 'postsController'
 			});
 
 	});
@@ -125,46 +119,91 @@
 		$scope.color = 'gray';
 	});
 
-	mainApp.controller('postController', function($scope) {
-		$scope.title = 'my posts';
-		$scope.color = 'gray';
-		$scope.postForm = function(postData){
-        var data = $scope.post;
-        $http.post(url, data);        
-    	}
+	mainApp.controller('blogController',function($scope,$route,Blog){
+        $scope.title = 'my thoughts and life';
+        $scope.description = '';
+	    $scope.posts = Blog.query();
 	});
 
-	mainApp.controller('newsController', function($scope, blogAPIget) {
-		$scope.title = 'my thoughts and life';
-		$scope.typeFilter = null;
-		$scope.articleList = [];
-		blogAPIget.getPosts().success(function (response){
-			$scope.articleList = response.MRData.StandingsTable.StandingsLists[0].DriverStandings;
-		});
-		// $scope.articleList = [
-		// {Article: {id: 1,title: 'Why Millenials shouldn\'t accept corporate america',author: 'Leo Schultz',date: 'September 10th 2014', type: 'business'}},
-		// {Article: {id: 2,title: '25 things I will never understand about feminism',author: 'Leo Schultz',date: 'September 14th 2011', type: 'culture'}},
-		// {Article: {id: 3,title: 'What the popping of the mobile bubble with look like.',author: 'Leo Schultz',date: 'January 12th 2014', type: 'business'}},
-		// {Article: {id: 4,title: 'My week mentoring GSBI social ventures',author: 'Leo Schultz',date: 'June 24th 2013', type: 'news'}},
-		// {Article: {id: 5,title: 'Libertarian = American',author: 'Leo Schultz',date: 'April 2nd 2012', type: 'politics'}},
-		// {Article: {id: 6,title: 'The line between confident and cocky',author: 'Leo Schultz',date: 'May 30th 2013', type: 'culture'}},
-		// {Article: {id: 7,title: 'The role of material sciences in future technology',author: 'Leo Schultz',date: 'May 30th 2013', type: 'technology'}},
-		// ];
+	mainApp.controller('postsController', function($scope,$route,$routeParams,Blog) {
+		$scope.posts = Blog.get({id:$routeParams.id});
+		$scope.key = $routeParams.id;
+		$scope.postURL = 'http://www.leoschultz.com/#/blog/' + $routeParams.id;
+		console.log($scope.postURL);
+	   	$scope.searchFilter = function (post) {
+	    var keyword = new RegExp($scope.dataFilter, 'i');
+	    	return !$scope.dataFilter || keyword.test(posts.title) || keyword.test(posts.author.displayName) || keyword.test(posts.labels) || keyword.test(posts.content);
+		};
 	});
 
-	mainApp.controller('articleController', function($scope, $routeParams) {
-		$scope.title = 'example article';
-		$scope.color = 'gray';
-		$scope.post_id = $routeParams.postId;
+	mainApp.factory('Blog',function($resource){
+    	return $resource(
+    		'https://www.googleapis.com/blogger/v3/blogs/2379160583999582935/posts/?&key=AIzaSyDD_M6lnUlByde6S7NGg0FFLDMER-aBv8Y',
+    		{},
+      		{query: { method: 'GET', isArray: false }}
+    	);
 	});
 
-	mainApp.factory('blogAPIget', function($http){
-	var blogAPI = {};
-    blogAPI.getPosts = function() {
-      return $http({
-        method: 'JSONP', 
-        url: 'http://ergast.com/api/f1/2013/driverStandings.json?callback=JSON_CALLBACK'
-      });
-    }
-    return blogAPI;
-	});
+	mainApp.filter('to_trusted', ['$sce', function($sce){
+        return function(text) {
+            return $sce.trustAsHtml(text);
+        };
+    }]);
+
+    mainApp.directive('dirDisqus', ['$window', function($window) {
+        return {
+            restrict: 'E',
+            scope: {
+                disqus_shortname: '@disqusShortname',
+                disqus_identifier: '@disqusIdentifier',
+                disqus_title: '@disqusTitle',
+                disqus_url: '@disqusUrl',
+                disqus_category_id: '@disqusCategoryId',
+                disqus_disable_mobile: '@disqusDisableMobile',
+                readyToBind: "@"
+            },
+            template: '<div id="disqus_thread"></div><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>',
+            link: function(scope) {
+
+                // ensure that the disqus_identifier and disqus_url are both set, otherwise we will run in to identifier conflicts when using URLs with "#" in them
+                // see http://help.disqus.com/customer/portal/articles/662547-why-are-the-same-comments-showing-up-on-multiple-pages-
+                if (typeof scope.disqus_identifier === 'undefined' || typeof scope.disqus_url === 'undefined') {
+                    throw "Please ensure that the `disqus-identifier` and `disqus-url` attributes are both set.";
+                }
+
+                scope.$watch("readyToBind", function(isReady) {
+
+                    // If the directive has been called without the 'ready-to-bind' attribute, we
+                    // set the default to "true" so that Disqus will be loaded straight away.
+                    if ( !angular.isDefined( isReady ) ) {
+                        isReady = "true";
+                    }
+                    if (scope.$eval(isReady)) {
+                        // put the config variables into separate global vars so that the Disqus script can see them
+                        $window.disqus_shortname = scope.disqus_shortname;
+                        $window.disqus_identifier = scope.disqus_identifier;
+                        $window.disqus_title = scope.disqus_title;
+                        $window.disqus_url = scope.disqus_url;
+                        $window.disqus_category_id = scope.disqus_category_id;
+                        $window.disqus_disable_mobile = scope.disqus_disable_mobile;
+
+                        // get the remote Disqus script and insert it into the DOM, but only if it not already loaded (as that will cause warnings)
+                        if (!$window.DISQUS) {
+                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                            dsq.src = '//' + scope.disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        } else {
+                            $window.DISQUS.reset({
+                                reload: true,
+                                config: function () {
+                                    this.page.identifier = scope.disqus_identifier;
+                                    this.page.url = scope.disqus_url;
+                                    this.page.title = scope.disqus_title;
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        };
+    }]);
