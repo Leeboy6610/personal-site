@@ -23,14 +23,6 @@ header, footer{
 	background: rgb(180, 180, 180);
 }
 
-.splash {
-        display: none;
-}
- 
-[ng-cloak].splash {
-        display: block!important;
-}
-
 #loading{
         position: fixed;
         left: 25%;

@@ -51,18 +51,29 @@
 
 	// create the controller and inject Angular's $scope
 	mainApp.controller('mainController', function($scope) {
-		// create a title to display in our view
-		$scope.title = 'Leo Schultz';
-		$scope.slogan = 'Silicon Valley Generalist';
-		$scope.next = 'work';
-		$scope.previous = 'about';
+		$scope.$on('$routeChangeStart', function(scope){
+			$scope.loading = '';
+		});
+		$scope.$on('$routeChangeSuccess', function(scope){
+			$scope.title = 'Leo Schultz';
+			$scope.slogan = 'Silicon Valley Generalist';
+			$scope.next = 'work';
+			$scope.previous = 'about';
+			$scope.loading = 'hidden';
+		});
 	});
 
 	mainApp.controller('aboutController', function($scope) {
-		$scope.title = 'about me';
-		$scope.color = 'gray';
-		$scope.next = 'home';
-		$scope.previous = 'blog';
+		$scope.$on('$routeChangeStart', function(scope){
+			$scope.loading = '';
+		});
+		$scope.$on('$routeChangeSuccess', function(scope){
+			$scope.title = 'about me';
+			$scope.color = 'gray';
+			$scope.next = 'home';
+			$scope.previous = 'blog';
+			$scope.loading = 'hidden';
+		});
 	});
 
 	// mainApp.controller('contactController', function($scope, $http) {
@@ -103,37 +114,67 @@
 	// });
 
 	mainApp.controller('workController', function($scope) {
-		$scope.title = 'my work';
-		$scope.color = 'gray';
-		$scope.next = 'about';
-		$scope.previous = 'home';
+		$scope.$on('$routeChangeStart', function(scope){
+			$scope.loading = '';
+		});
+		$scope.$on('$routeChangeSuccess', function(scope){
+			$scope.title = 'my work';
+			$scope.color = 'gray';
+			$scope.next = 'about';
+			$scope.previous = 'home';
+			$scope.loading = 'hidden';
+		});
 	});
 
 	mainApp.controller('skillsController', function($scope) {
-		$scope.title = 'my skills';
-		$scope.color = 'gray';
+		$scope.$on('$routeChangeStart', function(scope){
+			$scope.loading = '';
+		});
+		$scope.$on('$routeChangeSuccess', function(scope){
+			$scope.title = 'my skills';
+			$scope.color = 'gray';
+			$scope.loading = 'hidden';
+		});
 	});
 
 	mainApp.controller('hobbiesController', function($scope) {
-		$scope.title = 'my hobbies';
-		$scope.color = 'gray';
+		$scope.$on('$routeChangeStart', function(scope){
+			$scope.loading = '';
+		});
+		$scope.$on('$routeChangeSuccess', function(scope){
+			$scope.title = 'my hobbies';
+			$scope.color = 'gray';
+			$scope.loading = 'hidden';
+		});
 	});
 
 	mainApp.controller('blogController',function($scope,$route,Blog){
-        $scope.title = 'my thoughts and life';
-        $scope.description = '';
-	    $scope.posts = Blog.query();
+		$scope.$on('$routeChangeStart', function(scope){
+			$scope.loading = '';
+		});
+		$scope.$on('$routeChangeSuccess', function(scope){
+	        $scope.title = 'my thoughts and life';
+	        $scope.description = '';
+		    $scope.posts = Blog.query();
+		    $scope.loading = 'hidden';
+		});
 	});
 
 	mainApp.controller('postsController', function($scope,$route,$routeParams,Blog) {
-		$scope.posts = Blog.get({id:$routeParams.id});
-		$scope.key = $routeParams.id;
-		$scope.postURL = 'http://www.leoschultz.com/#/blog/' + $routeParams.id;
-		console.log($scope.postURL);
-	   	$scope.searchFilter = function (post) {
-	    var keyword = new RegExp($scope.dataFilter, 'i');
-	    	return !$scope.dataFilter || keyword.test(posts.title) || keyword.test(posts.author.displayName) || keyword.test(posts.labels) || keyword.test(posts.content);
-		};
+		$scope.$on('$routeChangeStart', function(scope){
+			$scope.loading = '';
+		});
+		$scope.$on('$routeChangeSuccess', function(scope){
+			$scope.posts = Blog.get({id:$routeParams.id});
+			$scope.key = $routeParams.id;
+			$scope.postURL = 'http://www.leoschultz.com/#/blog/' + $routeParams.id;
+			console.log($scope.postURL);
+		   	$scope.searchFilter = function (post) {
+		    var keyword = new RegExp($scope.dataFilter, 'i');
+		    	return !$scope.dataFilter || keyword.test(posts.title) || keyword.test(posts.author.displayName) || keyword.test(posts.labels) || keyword.test(posts.content);
+			};
+			$scope.loading = 'hidden';
+		});
 	});
 
 	mainApp.factory('Blog',function($resource){
