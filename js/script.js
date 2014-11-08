@@ -131,7 +131,7 @@
 			$scope.loading = '';
 		});
 		$scope.$on('$routeChangeSuccess', function(scope){
-			$scope.title = 'my skills';
+			$scope.title = 'my skillz';
 			$scope.color = 'gray';
 			$scope.loading = 'hidden';
 		});
