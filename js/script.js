@@ -167,7 +167,7 @@
 		$scope.$on('$routeChangeSuccess', function(scope){
 			$scope.posts = Blog.get({id:$routeParams.id});
 			$scope.key = $routeParams.id;
-			$scope.postURL = 'http://www.leoschultz.com/#/blog/' + $routeParams.id;
+			$scope.postURL = 'http://www.leoschultz.com/blog/' + $routeParams.id;
 			console.log($scope.postURL);
 		   	$scope.searchFilter = function (post) {
 		    var keyword = new RegExp($scope.dataFilter, 'i');

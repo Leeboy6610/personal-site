@@ -814,3 +814,23 @@ a:hover, a:active{
     -ms-transform: rotate(90deg);
     transform: rotate(90deg);
 }
+
+#audioplayer{
+    width: 60px;
+    height: 60px;
+    margin: 50px auto auto auto;
+}
+
+#pButton{
+    height:60px; 
+    width: 60px;
+    border: none;
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    float:left;
+    outline:none;
+}
+
+.play{background: url('../images/play.png') ;}
+.pause{background: url('../images/pause.png') ;}
