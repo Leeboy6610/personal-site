@@ -35,6 +35,42 @@
 				controller  : 'hobbiesController'
 			})
 
+			// route for the experience page
+			.when('/cooking', {
+				templateUrl : 'pages/hobbies.html',
+				controller  : 'cookingController'
+			})
+
+			// route for the experience page
+			.when('/cars', {
+				templateUrl : 'pages/hobbies.html',
+				controller  : 'carsController'
+			})
+
+			// route for the experience page
+			.when('/politics', {
+				templateUrl : 'pages/hobbies.html',
+				controller  : 'politicsController'
+			})
+
+			// route for the experience page
+			.when('/ventures', {
+				templateUrl : 'pages/hobbies.html',
+				controller  : 'venturesController'
+			})
+
+			// route for the experience page
+			.when('/philosophy', {
+				templateUrl : 'pages/hobbies.html',
+				controller  : 'philosophyController'
+			})
+
+			// route for the experience page
+			.when('/sports', {
+				templateUrl : 'pages/hobbies.html',
+				controller  : 'sportsController'
+			})
+
 			// route for the post articles page
 			.when('/blog', {
 				templateUrl : 'pages/blog.html',
@@ -154,6 +190,78 @@
 		});
 		$scope.$on('$routeChangeSuccess', function(scope){
 	        $scope.title = 'my thoughts and life';
+	        $scope.description = '';
+		    $scope.posts = Blog.query();
+		    $scope.loading = 'hidden';
+		});
+	});
+
+	mainApp.controller('cookingController',function($scope,$route,Blog){
+		$scope.$on('$routeChangeStart', function(scope){
+			$scope.loading = '';
+		});
+		$scope.$on('$routeChangeSuccess', function(scope){
+	        $scope.title = 'cooking';
+	        $scope.description = '';
+		    $scope.posts = Blog.query();
+		    $scope.loading = 'hidden';
+		});
+	});
+
+	mainApp.controller('carsController',function($scope,$route,Blog){
+		$scope.$on('$routeChangeStart', function(scope){
+			$scope.loading = '';
+		});
+		$scope.$on('$routeChangeSuccess', function(scope){
+	        $scope.title = 'cars';
+	        $scope.description = '';
+		    $scope.posts = Blog.query();
+		    $scope.loading = 'hidden';
+		});
+	});
+
+	mainApp.controller('venturesController',function($scope,$route,Blog){
+		$scope.$on('$routeChangeStart', function(scope){
+			$scope.loading = '';
+		});
+		$scope.$on('$routeChangeSuccess', function(scope){
+	        $scope.title = 'ventures';
+	        $scope.description = '';
+		    $scope.posts = Blog.query();
+		    $scope.loading = 'hidden';
+		});
+	});
+
+	mainApp.controller('sportsController',function($scope,$route,Blog){
+		$scope.$on('$routeChangeStart', function(scope){
+			$scope.loading = '';
+		});
+		$scope.$on('$routeChangeSuccess', function(scope){
+	        $scope.title = 'sports';
+	        $scope.description = '';
+		    $scope.posts = Blog.query();
+		    $scope.loading = 'hidden';
+		});
+	});
+
+	mainApp.controller('philosophyController',function($scope,$route,Blog){
+		$scope.$on('$routeChangeStart', function(scope){
+			$scope.loading = '';
+		});
+		$scope.$on('$routeChangeSuccess', function(scope){
+	        $scope.title = 'philosophy';
+	        $scope.description = '';
+		    $scope.posts = Blog.query();
+		    $scope.loading = 'hidden';
+		});
+	});
+
+	mainApp.controller('politicsController',function($scope,$route,Blog){
+		$scope.$on('$routeChangeStart', function(scope){
+			$scope.loading = '';
+		});
+		$scope.$on('$routeChangeSuccess', function(scope){
+	        $scope.title = 'politics';
 	        $scope.description = '';
 		    $scope.posts = Blog.query();
 		    $scope.loading = 'hidden';
