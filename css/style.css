@@ -39,6 +39,7 @@ header, footer{
         height:100%;
         width:100%;
         background: #222;
+        z-index: 999;
 }
  
 .splash h2 {
